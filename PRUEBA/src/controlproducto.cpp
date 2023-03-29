@@ -3,7 +3,7 @@
 #include <sstream>
 using namespace std;
 
-int num1, add, rest, newi, opc;
+int num1, add, rest, newi, opc, siNo;
 string newString, producto;
 string productos[10][2] = {{"Producto01", "100"}, {"Producto02", "015"}, {"Producto03", "055"}, {"Producto04", "288"}, {"Producto05", "319"}, {"Producto06", "421"}, {"Producto07", "423"}, {"Producto08", "201"}, {"Producto09", "038"}, {"Producto10", "128"}};
 
@@ -39,21 +39,6 @@ void buscarProducto()
     // cout << endl;
 }
 
-void ingresar()
-{
-    cout << "UNIDADES A INGRESAR: ";
-    cin >> add;
-    system("cls");
-    num1 += add;
-    stringstream ss;
-    ss << num1;
-    newString = ss.str();
-    // cout << "EL STRING ES: " << newString;
-    productos[newi][1] = newString;
-    imprimeProductos();
-    cout << endl;
-}
-
 void retirar()
 {
     cout << "UNIDADES A RETIRAR: ";
@@ -72,8 +57,23 @@ void retirar()
     else
     {
         cout << "UNIDADES INSUFICIENTES\n";
-        buscarProducto();
+        imprimeProductos();
     }
+}
+
+void ingresar()
+{
+    cout << "UNIDADES A INGRESAR: ";
+    cin >> add;
+    system("cls");
+    num1 += add;
+    stringstream ss;
+    ss << num1;
+    newString = ss.str();
+    // cout << "EL STRING ES: " << newString;
+    productos[newi][1] = newString;
+    imprimeProductos();
+    cout << endl;
 }
 
 void ingresarOretirar()
@@ -106,11 +106,12 @@ void ingresarOretirarMas()
              << "1. SI\n"
              << "2. NO\n"
              << "OPCIONES: ";
-        cin >> opc;
+        cin >> siNo;
         system("cls");
-        switch (opc)
+        switch (siNo)
         {
         case 1:
+            buscarProducto();
             ingresarOretirar();
             break;
         case 2:
@@ -120,14 +121,14 @@ void ingresarOretirarMas()
         default:
             break;
         }
-    } while (opc != 2);
+    } while (siNo != 2);
 }
 
 int main()
 {
-    // imprimeProductos();
-    // system("pause");
-    // system("cls");
+    imprimeProductos();
+    system("pause");
+    system("cls");
     buscarProducto();
     ingresarOretirar();
     ingresarOretirarMas();
